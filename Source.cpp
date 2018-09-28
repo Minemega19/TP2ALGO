@@ -10,25 +10,25 @@ using namespace std;
 //POSTC
 
 int pointeurAvecBug() {
+// A CONTROLER AVEC FEUILLE
 	int tab[5];
 	int *p1, *p2;
 	char str[20];
 	char *c;
 
 	tab[0] = 5;
-	cout << " tab[2] vaut " << tab[0]; //tab[2] n'a pas été initialisé : il n'existe pas
-	tab = p1 + 1;
+	cout << " tab[2] vaut " << tab[2]; //tab[2] n'a pas été initialisé : il n'existe pas
+	p1 = tab + 1;
 	*p1 = 10;
-	p2 = 0;
 	*p2 = 20; //P2 n'a pas été initialisé
 	p2 = p1;
 	cout << " p1 vaut " << *p1 << " p2 vaut " << *p2;
-	//tab = p1 + 1; //Tableau d'adresse fix
-	//c = tab + 3; //c est un type char et tab un type int
+	tab = p1 + 1; //Tableau d'adresse fix
+	c = tab + 3; //c est un type char et tab un type int
 	cin>>str;
 	c = str + 2;
 	c = c + 1;
-	cout << " caractère " << *(c + 1);
+	cout << " caractere " << *(c + 1);
 	cin>>c;
 	cout << " chaine " << str;
 	system("PAUSE");
@@ -41,20 +41,19 @@ int pointeurCorrige() {
 	char str[20];
 	char *c;
 
-	tab[0] = 5;
-	cout << " tab[0] vaut " << tab[0];
-//	tab = p1 + 1;
+	tab[0] = 5; //OK
+	cout << " tab[0] vaut " << tab[0]; //OK
+	p1 = tab + 1;
 	*p1 = 10;
-	p2 = 0;
+	 p2 = p1; //INIT SWIPE
 	*p2 = 20;
-	p2 = p1;
 	cout << " p1 vaut " << *p1 << " p2 vaut " << *p2;
-	//tab = p1 + 1;
-	//c = tab + 3; //c est un type char et tab un type int
-	cin >> str;
-	c = str + 2;
-	c = c + 1;
-	cout << " caractère " << *(c + 1);
+	*tab = *p1 + 1; //OK
+	c = str;
+	cin >> str; //PAS BESOIN DE str[0] car il prend la mémoire 
+	c = str + 2; //OK
+	c = c + 1; //OK
+	cout << " caractere " << *(c + 1);
 	cin >> c;
 	cout << " chaine " << str;
 	return 0;
